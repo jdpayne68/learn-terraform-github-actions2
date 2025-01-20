@@ -13,15 +13,15 @@ terraform {
     }
   }
 
-  cloud { 
+  cloud {
     
     organization = "Kumo-Solutions" 
 
     workspaces { 
       name = "learn-terraform-github-actions" 
     }
-
-
+  }
+}
 resource "aws_vpc" "app1" {
   cidr_block = "10.72.0.0/16"
 
@@ -357,3 +357,14 @@ resource "aws_launch_template" "app1_LT" {
     create_before_destroy = true
   }
 }
+
+output "web-address" (
+
+value = "$(aws_instance.web.public_dns):8080"
+
+)
+
+
+
+
+  
